@@ -48,7 +48,7 @@ function isOperatorInvalid(val) {
 function calculateResult(a, b, action) {
     switch (action) {
         case '+':
-            return 5;
+            return a + b;
         case '-':
             return a - b;
         case '*':
