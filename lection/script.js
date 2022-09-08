@@ -1,38 +1,63 @@
-// Спрашиваем мат. операцию + - * / // +
-// Валидируем
-// Спрашиваем все операнды через запятую // 3,4,5,6,7
-// Выводим результат // 25
+let arr = ['c', 'd', 'a', 'b', 3, 45, 1, 11, 2];
 
-// const action = getAction();
-// const operandsCount = getOperandsCount(); // 3
-// const operands = getOperands(operandsCount);
-// const answer = calculate(operands, action);
+let students = [
+    {
+        id: 1,
+        name: 'Alex',
+        marks: [10, 10, 5], // 25 / 3 = 8.3333
+    },
+    {
+        id: 2,
+        name: 'Bob',
+        marks: [10, 10, 5],
+    },
+    {
+        id: 3,
+        name: 'John',
+        marks: [10, 10, 5],
+    },
+];
 
-// function getOperands() {
-//     return [2, 3, 5];
-// }
+function calculateStudentAverageMark(student) {} //
 
-// function calculate(values, operation) {
-//     const result = values.reduce(function (acc, item) {
-//         return calculateResult(acc, item, operation);
-//     });
+function calculateGroupAverageMark(students) {}
 
-//     return result;
-// }
+const result = calculateStudentAverageMark(students[1]);
+console.log(result);
+//
 
-// const result = operands.reduce(function (acc, item) {
-//     return calculateResult(acc, item, action);
+// map
+// reduce
+// foreach
+// concat
+
+// const filteredArr = arr.filter((item) => {
+//     return !isNaN(item);
 // });
 
-// function calculateResult(a, b, action) {
-//     switch (action) {
-//         case '+':
-//             return a + b;
-//         case '-':
-//             return a - b;
-//         case '*':
-//             return a * b;
-//         case '/':
-//             return a / b;
-//     }
-// }
+// const val = arr.find((item) => {
+//     return !isNaN(item);
+// });
+
+// const index = arr.findIndex((item) => {
+//     return !isNaN(item);
+// });
+
+// const i = arr.indexOf(3);
+
+// const index = arr.indexOf('d');
+// arr.splice(index, 1);
+
+// arr = arr.filter((item) => item !== 'd');
+
+// const studentIndex = students.findIndex((item) => item.id === 2);
+// students.splice(studentIndex, 1);
+
+// students = students.filter((item) => item.id !== 2);
+
+// students.sort((a, b) => a - b);
+
+arr.reverse();
+// -1 b > a
+// 0 b === a
+// 1 b < a

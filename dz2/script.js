@@ -9,7 +9,7 @@
 
 const operandA = getOperand('Enter operandA');
 const operandB = getOperand('Enter operandB');
-const action = getAction();
+const action = getOperator();
 const result = calculateResult(operandA, operandB, action);
 showResult(operandA, operandB, action, result);
 
@@ -28,7 +28,7 @@ function isOperandInvalid(val) {
     return val === null || val.trim() === '' || isNaN(val);
 }
 
-function getAction() {
+function getOperator() {
     let val;
 
     do {
