@@ -1,63 +1,56 @@
-let arr = ['c', 'd', 'a', 'b', 3, 45, 1, 11, 2];
+// const msg = 'Hello';
+// function sayHi(name) {
+//     function log() {
+//         console.log(msg + name);
+//     }
 
-let students = [
-    {
-        id: 1,
-        name: 'Alex',
-        marks: [10, 10, 5], // 25 / 3 = 8.3333
-    },
-    {
-        id: 2,
-        name: 'Bob',
-        marks: [10, 10, 5],
-    },
-    {
-        id: 3,
-        name: 'John',
-        marks: [10, 10, 5],
-    },
-];
+//     return log;
+// }
+// let talkToAlex = sayHi('Alex');
+// const talkToBob = sayHi('Bob');
+// talkToAlex = null;
 
-function calculateStudentAverageMark(student) {} //
+// function sum(a) {
+//     return function (b) {
+//         return a + b;
+//     };
+// }
 
-function calculateGroupAverageMark(students) {}
+// const result = sum(2)(3);
 
-const result = calculateStudentAverageMark(students[1]);
-console.log(result);
-//
+// const add10 = sum(10);
 
-// map
-// reduce
-// foreach
-// concat
+// const result1 = add10(50);
+// const result2 = add10(100);
 
-// const filteredArr = arr.filter((item) => {
-//     return !isNaN(item);
-// });
+// function createCounter() {
+//     let counts = 0;
 
-// const val = arr.find((item) => {
-//     return !isNaN(item);
-// });
+//     return {
+//         count: () => ++counts,
+//         reset: () => (counts = 0),
+//     };
+// }
 
-// const index = arr.findIndex((item) => {
-//     return !isNaN(item);
-// });
+// const superCounter = createCounter();
+// const puperCounter = createCounter();
 
-// const i = arr.indexOf(3);
+// function createCalculator(val){
 
-// const index = arr.indexOf('d');
-// arr.splice(index, 1);
+// }
 
-// arr = arr.filter((item) => item !== 'd');
+// const calc = createCalculator(100);
+// const calc2 = createCalculator(100);
+// const calc3 = createCalculator(100);
+// const calc4= createCalculator(100);
 
-// const studentIndex = students.findIndex((item) => item.id === 2);
-// students.splice(studentIndex, 1);
+// calc.add(10) // 110
+// calc.div(10) // 11
+// calc.add(5) // 16
 
-// students = students.filter((item) => item.id !== 2);
-
-// students.sort((a, b) => a - b);
-
-arr.reverse();
-// -1 b > a
-// 0 b === a
-// 1 b < a
+// add
+// sub
+// div
+// mult
+// calc.set(500);
+// calc.div(5); // 100
