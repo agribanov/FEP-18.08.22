@@ -1,56 +1,21 @@
-// const msg = 'Hello';
-// function sayHi(name) {
-//     function log() {
-//         console.log(msg + name);
-//     }
+// const list = document.getElementById('list');
+// const listItems = document.getElementsByClassName('list-item');
+// const lis = document.getElementsByTagName('li');
+// const usernameInput = document.getElementsByName('username');
+//----
 
-//     return log;
-// }
-// let talkToAlex = sayHi('Alex');
-// const talkToBob = sayHi('Bob');
-// talkToAlex = null;
+// // const list = document.querySelector('#list');
+// // const lis = document.querySelectorAll('.list-item');
 
-// function sum(a) {
-//     return function (b) {
-//         return a + b;
-//     };
-// }
+// const btn = document.querySelector('#myButton');
+// const input = document.querySelector('#username');
+// const select = document.querySelector('#greeting');
+// const resultDiv = document.querySelector('#result');
 
-// const result = sum(2)(3);
+// btn.addEventListener('click', onBtnClick);
 
-// const add10 = sum(10);
-
-// const result1 = add10(50);
-// const result2 = add10(100);
-
-// function createCounter() {
-//     let counts = 0;
-
-//     return {
-//         count: () => ++counts,
-//         reset: () => (counts = 0),
-//     };
+// function onBtnClick() {
+//     resultDiv.textContent = `Hello, ${select.value} ${input.value}`;
 // }
 
-// const superCounter = createCounter();
-// const puperCounter = createCounter();
-
-// function createCalculator(val){
-
-// }
-
-// const calc = createCalculator(100);
-// const calc2 = createCalculator(100);
-// const calc3 = createCalculator(100);
-// const calc4= createCalculator(100);
-
-// calc.add(10) // 110
-// calc.div(10) // 11
-// calc.add(5) // 16
-
-// add
-// sub
-// div
-// mult
-// calc.set(500);
-// calc.div(5); // 100
+const input = document.querySelector('input');
