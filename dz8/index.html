@@ -9,8 +9,15 @@
         <script src="script.js" defer></script>
     </head>
     <body>
-        <div id="container">
-            <button>Click me</button>
-        </div>
+        <input type="text" id="operandA" />
+        <select id="operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="text" id="operandB" />
+        <button id="calcBtn">Calculate</button>
+        <div id="result"></div>
     </body>
 </html>

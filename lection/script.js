@@ -1,21 +1,39 @@
-// const list = document.getElementById('list');
-// const listItems = document.getElementsByClassName('list-item');
-// const lis = document.getElementsByTagName('li');
-// const usernameInput = document.getElementsByName('username');
-//----
+const btn = document.querySelector('button');
 
-// // const list = document.querySelector('#list');
-// // const lis = document.querySelectorAll('.list-item');
+document.addEventListener(
+    'click',
+    () => {
+        console.log('capture click on document');
+    },
+    true
+);
 
-// const btn = document.querySelector('#myButton');
-// const input = document.querySelector('#username');
-// const select = document.querySelector('#greeting');
-// const resultDiv = document.querySelector('#result');
+document.body.addEventListener(
+    'click',
+    (event) => {
+        event.stopPropagation();
 
-// btn.addEventListener('click', onBtnClick);
+        console.log('capture click on body', event.target);
+    },
+    true
+);
 
-// function onBtnClick() {
-//     resultDiv.textContent = `Hello, ${select.value} ${input.value}`;
-// }
+btn.addEventListener(
+    'click',
+    () => {
+        console.log('capture click on btn');
+    },
+    true
+);
 
-const input = document.querySelector('input');
+document.addEventListener('click', () => {
+    console.log('bubble click on document');
+});
+
+document.body.addEventListener('click', () => {
+    console.log('bubble click on body');
+});
+
+btn.addEventListener('click', (event) => {
+    console.log('bubble click on btn');
+});
