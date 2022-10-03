@@ -1,39 +1,45 @@
-const btn = document.querySelector('button');
+// 'use strict';
+// // ООП;
+// // Обьектно ориентированное програмирование
 
-document.addEventListener(
-    'click',
-    () => {
-        console.log('capture click on document');
-    },
-    true
-);
+// function fn() {
+//     console.log('hello', this.name);
+// }
 
-document.body.addEventListener(
-    'click',
-    (event) => {
-        event.stopPropagation();
+// function Person(name, age) {
+//     this.name = name;
+//     this.age = age;
+//     this.say = function (msg) {
+//         console.log(msg, this.name);
+//     };
+// }
 
-        console.log('capture click on body', event.target);
-    },
-    true
-);
+// // const personA = {
+// //     name: 'Alex',
+// //     age: 22,
+// //     say: fn,
+// // };
+// // const personB = {
+// //     name: 'Bob',
+// //     age: 33,
+// //     say: fn,
+// // };
 
-btn.addEventListener(
-    'click',
-    () => {
-        console.log('capture click on btn');
-    },
-    true
-);
+// // const personC = {
+// //     name: 'John',
+// //     age: 33,
+// //     say: fn,
+// // };
 
-document.addEventListener('click', () => {
-    console.log('bubble click on document');
-});
+// const personA = new Person('Alex', 22);
+// const personB = new Person('Bob', 33);
+// const personC = new Person('John', 245);
 
-document.body.addEventListener('click', () => {
-    console.log('bubble click on body');
-});
-
-btn.addEventListener('click', (event) => {
-    console.log('bubble click on btn');
-});
+const calc = new Calculator(10);
+calc.result; // 10
+calc.add(100); //110
+calc.result; // 110
+calc.div(11); //10
+calc.mult(5); //50
+calc.sub(20); //30
+calc.result; // 30
