@@ -1,92 +1,153 @@
-// ООП
+// // // function Hamburger(size) {
+// // //     this._size = size;
+// // //     this._toppings = [];
+// // //     this._price = size.price;
+// // //     this._callories = size.callories;
+// // // }
 
-// 1) Наследование
-// 2) Инкапсуляция
-// 3) Полиморфизм
+// // // Hamburger.SMALL_SIZE = { label: 'Small size', price: 50, callories: 100 };
+// // // Hamburger.BIG_SIZE = { label: 'Big size', price: 100, callories: 200 };
 
-// 4) Абстракция
+// // // Hamburger.TOPPING_MAYO = { label: 'Mayo', price: 60, callories: 2000 };
+// // // Hamburger.TOPPING_KETCHUP = { label: 'Ketchup', price: 40, callories: 200 };
+// // // Hamburger.TOPPING_CHEESE = { label: 'Cheese', price: 100, callories: 50 };
 
-function Person(name) {
-    this.name = name;
-}
+// // // Hamburger.prototype.addTopping = function (topping) {
+// // //     this._toppings.push(topping);
 
-// Person.prototype.getName = function () {
-//     console.log(Person.formatName(this.name));
-// };
-// Person.prototype.setName = function (newName) {
-//     if (newName !== '') {
-//         this.name = newName;
+// // //     this._calculate();
+// // //     return this;
+// // // };
+
+// // // Hamburger.prototype._calculate = function () {
+// // //     this._price = this._toppings.reduce(
+// // //         (acc, { price }) => acc + price,
+// // //         this._size.price
+// // //     );
+
+// // //     this._callories = this._toppings.reduce(
+// // //         (acc, { callories }) => acc + callories,
+// // //         this._size.callories
+// // //     );
+// // // };
+
+// // // Hamburger.prototype.getPrice = function () {
+// // //     return this._price;
+// // // };
+
+// // // Hamburger.prototype.getCallories = function () {
+// // //     return this._callories;
+// // // };
+
+// // // OOP
+// // // Инкапсуляция
+// // // Наследование
+// // // полиморфизм
+
+// // // get/set
+
+// class Hamburger {
+//     static SMALL_SIZE = { label: 'Small size', price: 50, callories: 100 };
+//     static BIG_SIZE = { label: 'Big size', price: 100, callories: 200 };
+
+//     static TOPPING_MAYO = { label: 'Mayo', price: 60, callories: 2000 };
+//     static TOPPING_KETCHUP = { label: 'Ketchup', price: 40, callories: 200 };
+//     static TOPPING_CHEESE = { label: 'Cheese', price: 100, callories: 50 };
+
+//     #toppings = [];
+//     #size = null;
+//     #price = 0;
+//     #callories = 0;
+
+//     get price() {
+//         return this.#price;
 //     }
-// };
 
-Person.prototype.sayHi = function (newName) {
-    console.log('hi ' + this.name);
-};
+//     constructor(size) {
+//         this.#size = size;
+//         this.#price = size.price;
+//         this.#callories = size.callories;
+//     }
 
-// Person.PREFIX = 'Mr. ';
-// Person.formatName = function (name) {
-//     return Person.prefix + name;
-// };
+//     addTopping(topping) {
+//         this.#toppings.push(topping);
 
-function Student(name) {
-    this.name = name;
-}
+//         this.#calculate();
+//         return this;
+//     }
 
-Student.prototype = new Person();
-Student.prototype.study = function () {
-    console.log('studying ' + this.name);
-};
-Student.prototype.sayHi = function () {
-    Person.prototype.sayHi.call(this);
-    // Person.prototype.sayHi();
-    console.log('I am student', this.name);
-};
+//     #calculate() {
+//         this.#price = this.#toppings.reduce(
+//             (acc, { price }) => acc + price,
+//             this.#size.price
+//         );
 
-const alex = new Student('Alex');
-// const bob = new Student('Bob');
-const human = new Person('Human');
+//         this.#callories = this.#toppings.reduce(
+//             (acc, { callories }) => acc + callories,
+//             this.#size.callories
+//         );
+//     }
 
-// const obj = {
-//     name: 'alex',
-// };
-
-// function fn(msg, msg1, msg2) {
-//     console.log('FN', msg, msg1, msg2, this);
-
-//     return 'Hello';
+//     getCallories() {
+//         return this.#callories;
+//     }
 // }
 
-// //call
-// //apply
-// //bind
+// class SuperBurger extends Hamburger {
+//     isSuper = true;
 
-// function sum(a) {
-//     return (b) => a + b;
+//     constructor(size, topping) {
+//         super(size);
+
+//         this.addTopping(topping);
+//     }
+
+//     getCallories() {
+//         return super.getCallories() * 1.2;
+//     }
 // }
 
-// const add10 = sum(10);
+// const hum = new SuperBurger(Hamburger.SMALL_SIZE, Hamburger.TOPPING_MAYO);
 
-// add10(5) // 15
-// add10(50) // 60
+// // hum.addTopping(Hamburger.TOPPING_MAYO)
+// //     .addTopping(Hamburger.TOPPING_CHEESE)
+// //     .addTopping(Hamburger.TOPPING_KETCHUP);
+// // // hum.addTopping(Hamburger.TOPPING_KETCHUP);
 
-const SMALL_SIZE = { price: 50, callories: 100 };
-const BIG_SIZE = { price: 100, callories: 200 };
+// // // hum.getPrice(); // 150
+// // // hum.getCallories(); // 2300
 
-const TOPPING_MAYO = { price: 60, callories: 2000 };
-const TOPPING_KETCHUP = { price: 40, callories: 200 };
-const TOPPING_CHEEZE = { price: 100, callories: 50 };
+// // // hum.addTopping(TOPPING_MAYO);
 
-function Hamburger() {}
+// // // hum.getPrice(); // 210
+// // // hum.getCallories(); // 4300
 
-const hum = new Hamburger(SMALL_SIZE);
+// // class Person {
+// //     #name = '';
+// //     #surname = '';
 
-hum.addTopping(TOPPING_MAYO);
-hum.addTopping(TOPPING_KETCHUP);
+// //     get fullname() {
+// //         return this.#name + ' ' + this.#surname;
+// //     }
 
-hum.getPrice(); // 150
-hum.getCallories(); // 2300
+// //     // set fullname(newName) {
+// //     //     const [name, surname] = newName.split(' ');
 
-hum.addTopping(TOPPING_MAYO);
+// //     //     if (!surname) {
+// //     //         return;
+// //     //     }
 
-hum.getPrice(); // 210
-hum.getCallories(); // 4300
+// //     //     this.#name = name;
+// //     //     this.#surname = surname;
+// //     // }
+
+// //     constructor(name, surname) {
+// //         this.#name = name;
+// //         this.#surname = surname;
+// //     }
+// // }
+
+// // const alex = new Person('Alex', 'Smith');
+
+const tabset = new Tabset(document.getElementById('container'));
+const accordion = new Accordion(document.getElementById('accordion'));
