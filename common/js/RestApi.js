@@ -40,7 +40,6 @@ class RestApi {
 
     #request(url, options) {
         return fetch(url, options).then((res) => {
-            console.log(res);
             if (res.ok) {
                 return res.json();
             }

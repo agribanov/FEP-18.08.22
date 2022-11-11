@@ -31,4 +31,31 @@ class TodosCollection {
             this.list = this.list.filter((item) => item.id !== id);
         });
     }
+
+    save(data) {
+        console.log(data);
+        if (data.id) {
+            return this.update(data);
+        } else {
+            return this.create(data);
+        }
+    }
+
+    update(updatedItem) {
+        return this.#api.update(updatedItem).then((data) => {
+            this.list = this.list.map((item) =>
+                item.id === updatedItem.id ? data : item
+            );
+        });
+    }
+
+    create(data) {
+        return this.#api.create(data).then((createTodo) => {
+            this.list = [...this.list, createTodo];
+        });
+    }
+
+    getItem(id) {
+        return this.list.find((item) => item.id === id);
+    }
 }

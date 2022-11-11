@@ -3,6 +3,7 @@ class TodoListView {
         TODO_ITEM_CLASS: 'todo-item',
         DONE_ITEM_CLASS: 'done',
         DELETE_BTN_CLASS: 'delete-btn',
+        EDIT_BTN_CLASS: 'edit-btn',
     };
     static todoListContainerTemplate = `
         <div class="row">
@@ -12,6 +13,7 @@ class TodoListView {
     static todoItemTemplate = `
         <div class="u-full-width todo-item {{doneClass}}" data-todo-id="{{id}}">
             {{title}}
+            <span class="edit-btn">Edit</span>
             <span class="delete-btn">X</span>
         </div>`;
 
@@ -38,13 +40,7 @@ class TodoListView {
     }
 
     #initView() {
-        const row = document.createElement('div');
-        row.className = 'row';
-
-        const div = document.createElement('div');
-        div.className = 'twelve columns';
-
-        row.append(div);
+        const row = htmlToElement(TodoListView.todoListContainerTemplate);
 
         row.addEventListener('click', (e) => {
             if (
@@ -54,6 +50,12 @@ class TodoListView {
             ) {
                 const todoId = TodoListView.getTodoId(e.target);
                 this.deleteTodo(todoId);
+            }
+            if (
+                e.target.classList.contains(TodoListView.CLASSES.EDIT_BTN_CLASS)
+            ) {
+                const todoId = TodoListView.getTodoId(e.target);
+                this.editTodo(todoId);
             }
             if (
                 e.target.classList.contains(
@@ -80,5 +82,9 @@ class TodoListView {
 
     deleteTodo(id) {
         this.#config.onDelete(id);
+    }
+
+    editTodo(id) {
+        this.#config.onEdit(id);
     }
 }
