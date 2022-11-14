@@ -1,1 +1,1 @@
-const controller = new NotesController(document.querySelector('.container'));
+const controller = new NotesController($('.container'));

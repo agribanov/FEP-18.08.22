@@ -17,6 +17,8 @@ class NotesCollection {
     createNote() {
         const data = {
             description: '',
+            top: 50,
+            left: 50,
         };
 
         return this.#api

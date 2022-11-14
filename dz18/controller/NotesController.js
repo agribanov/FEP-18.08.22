@@ -3,17 +3,17 @@ class NotesController {
     #boardView = null;
     #headerView = null;
 
-    constructor(container) {
+    constructor($container) {
         this.#headerView = new HeaderView({
             onCreate: this.createNote,
         });
-        container.append(this.#headerView.el);
+        $container.append(this.#headerView.el);
 
         this.#boardView = new BoardView({
             onDelete: this.deleteNote,
             onUpdate: this.updateNote,
         });
-        container.append(this.#boardView.el);
+        $container.append(this.#boardView.$el);
 
         this.#collection = new NotesCollection();
         this.#collection.fetchList().then(() => {
@@ -29,7 +29,7 @@ class NotesController {
 
     updateNote = (id, changes) => {
         this.#collection.updateNote(id, changes).then(() => {
-            this.#boardView.renderList(this.#collection.list);
+            // this.#boardView.renderList(this.#collection.list);
         });
     };
 
