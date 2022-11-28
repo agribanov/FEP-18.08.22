@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import { interpolate } from '../../../common/js/utils';
 
 export default class BoardView {
@@ -22,7 +23,7 @@ export default class BoardView {
     `;
 
     static noteTemplate = `
-        <div class="note" data-note-index="{{id}}" style="background-color: {{color}}; top: {{top}}px; left: {{left}}px" >
+        <div class="note" data-note-index="{{id}}" >
             <span class="drag-note">o</span>
             <span class="delete-note">x</span>
             <textarea class="edit-note-control" name="description">{{description}}</textarea>
@@ -70,15 +71,6 @@ export default class BoardView {
         const items = list.map(BoardView.getNoteHtml).join('');
 
         this.$el.html(items);
-        this.$el.find(BoardView.SELECTORS.NOTE).draggable({
-            handle: BoardView.SELECTORS.DRAG,
-            stop: (e, ui) => {
-                console.log(e, ui);
-                const id = BoardView.getElementId($(e.target));
-
-                this.#config.onUpdate(id, ui.position);
-            },
-        });
     }
 
     delete(id) {

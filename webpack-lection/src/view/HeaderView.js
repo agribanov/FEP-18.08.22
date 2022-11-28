@@ -1,8 +1,8 @@
-import { htmlToElement } from '../../../common/js/utils';
+import $ from 'jquery';
 
 export default class HeaderView {
     #config = null;
-    el = null;
+    $el = null;
 
     static template = `
         <div class="row heading">
@@ -17,8 +17,8 @@ export default class HeaderView {
     }
 
     #initView() {
-        this.el = htmlToElement(HeaderView.template);
-        this.el.querySelector('button').addEventListener('click', () => {
+        this.$el = $(HeaderView.template);
+        this.$el.find('button').on('click', () => {
             this.#config.onCreate();
         });
     }
