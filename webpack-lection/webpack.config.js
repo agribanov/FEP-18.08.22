@@ -18,7 +18,7 @@ module.exports = {
         open: true,
     },
     module: {
-        rules: [{ test: /\.css$/, use: ['style-loader', 'css-loader'] }],
+        rules: [{ test: /\.scss$/, use: ['style-loader', 'css-loader'] }],
     },
     plugins: [
         new CleanWebpackPlugin(),

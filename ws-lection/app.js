@@ -2,77 +2,51 @@
 // ws://
 // wss://
 
-const URL = 'wss://fep-app.herokuapp.com/';
+const URL = 'ws://localhost:3000/';
+const chatForm = document.querySelector('#chatFrom');
+const logEl = document.querySelector('#log');
+let socket = null;
+chatForm.addEventListener('submit', onChatFromSubmit);
 
-const counterEl = document.querySelector('#counter');
-const incBtn = document.querySelector('#incBtn');
-const decBtn = document.querySelector('#decBtn');
-const setBtn = document.querySelector('#setBtn');
-const countsInput = document.querySelector('#countsInput');
-let counts = 0;
+init();
 
-incBtn.addEventListener('click', () => {
-    send('increment', +countsInput.value);
-});
+function init() {
+    socket = new WebSocket(URL);
 
-decBtn.addEventListener('click', () => {
-    send('decrement', +countsInput.value);
-});
-
-setBtn.addEventListener('click', () => {
-    send('set', +countsInput.value);
-});
-
-countsInput.addEventListener('input', () => {
-    send('edit', +countsInput.value);
-});
-
-const socket = new WebSocket(URL);
-
-socket.onopen = () => {
-    console.log('socket connected!');
-};
-
-socket.onclose = () => {
-    console.log('socket closed!');
-};
-
-socket.onerror = () => {
-    console.log('socket error!');
-};
-
-socket.onmessage = ({ data }) => {
-    data = JSON.parse(data);
-    action(data);
-};
-
-function send(type, payload) {
-    const package = {
-        type: 'message',
-        payload: {
-            author: 'Alex',
-            message: 'Hello world!',
-        },
-    };
-
-    socket.send(JSON.stringify(package));
+    socket.onmessage = onMessage;
+    // socket.onopen = () => socket.send('hello');
 }
 
-function action({ type, payload }) {
-    switch (type) {
-        case 'increment':
-            counts += +payload;
-            break;
-        case 'decrement':
-            counts -= +payload;
-            break;
-        case 'set':
-            counts = +payload;
-            break;
-        case 'edit':
-            countsInput.value = payload;
-            break;
-    }
+function onChatFromSubmit(e) {
+    e.preventDefault();
 
-    counterEl.textContent = counts;
+    send(chatForm.elements.author.value, chatForm.elements.message.value);
+}
+
+function onMessage({ data }) {
+    const { type, payload } = JSON.parse(data);
+
+    switch (type) {
+        case 'message':
+            return addMessage(payload);
+    }
+}
+
+function send(author, message) {
+    socket.send(
+        JSON.stringify({
+            type: 'message',
+            payload: {
+                author,
+                message,
+            },
+        })
+    );
+}
+
+function addMessage({ author, message }) {
+    logEl.insertAdjacentHTML(
+        'beforeend',
+        `<li><strong>${author}:</strong> ${message}</li>`
+    );
 }
