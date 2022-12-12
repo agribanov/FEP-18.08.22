@@ -6,8 +6,7 @@ export class CurrentTime extends Component {
     };
 
     componentDidMount() {
-        this.itervalId = setInterval(() => {
-            console.log('triger');
+        this.intervalId = setInterval(() => {
             this.setState({
                 ticks: this.state.ticks + 1,
             });
@@ -15,11 +14,11 @@ export class CurrentTime extends Component {
     }
 
     componentWillUnmount() {
-        clearInterval(this.itervalId);
+        clearInterval(this.intervalId);
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        return !(nextState.ticks % 10);
+    shouldComponentUpdate() {
+        return this.state.ticks % 10 === 0;
     }
 
     render() {

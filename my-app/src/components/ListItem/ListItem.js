@@ -13,6 +13,10 @@ export class ListItem extends Component {
         this.props.onDelete(this.props.todo.id);
     };
 
+    componentWillUnmount() {
+        console.log('unmounting');
+    }
+
     render() {
         return (
             <li

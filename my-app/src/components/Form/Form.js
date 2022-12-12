@@ -1,32 +1,77 @@
 import React, { Component } from 'react';
 
+import TextField from '../common/TextField/TextField';
+
 export class Form extends Component {
-    // state = {
-    //     title: 'hello',
-    //     author: 'world',
-    // };
+    state = {
+        values: {
+            title: '',
+        },
+        touched: {},
+        errors: {},
+        isValid: false,
+    };
 
-    // onSaveClick = () => {
-    //     console.log('clicked');
-    // };
+    onInputChange = (e) => {
+        const values = {
+            ...this.state.values,
+            [e.target.name]: e.target.value,
+        };
+        const errors = this.validate(values);
 
-    // onInputChange = (e) => {
-    //     this.setState({
-    //         [e.target.name]: e.target.value,
-    //     });
-    // };
+        this.setState({
+            values,
+            errors,
+            touched: {
+                ...this.state.touched,
+                [e.target.name]: true,
+            },
+            isValid: Object.keys(errors).length === 0,
+        });
+    };
 
     onFormSubmit = (e) => {
         e.preventDefault();
 
-        console.log(e.target.elements.title.value);
+        this.props.onSave(this.state.values);
+
+        e.target.reset();
     };
+
+    validate({ title, author }) {
+        const errors = {};
+
+        if (title === '') {
+            errors.title = 'Title is required';
+        }
+
+        if (title.length > 25) {
+            errors.title = 'Title is too long';
+        }
+
+        if (author === '') {
+            errors.author = 'Author is required';
+        }
+
+        return errors;
+    }
+
+    componentDidMount() {
+        console.log('Form mounted');
+    }
 
     render() {
         return (
             <form onSubmit={this.onFormSubmit}>
-                <input name="title" placeholder="title" />
-                <button>Save</button>
+                <TextField
+                    name="title"
+                    placeholder="Title"
+                    value={this.state.values.title}
+                    onChange={this.onInputChange}
+                    isTouched={this.state.touched.title}
+                    error={this.state.errors.title}
+                />
+                <button disabled={!this.state.isValid}>Save</button>
             </form>
         );
     }
