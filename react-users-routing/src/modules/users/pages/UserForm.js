@@ -1,63 +1,84 @@
 import { Button, Paper, TextField } from '@mui/material';
+import { Field, Form, Formik } from 'formik';
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 
-import React from 'react';
+import SuperTextField from '../../common/components/form/SuperTextField';
 import useUser from '../hooks/useUser';
+
+const EMAIL_VALIDATION_REGEXP =
+    /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
 
 function UserForm() {
     const { id } = useParams();
-    const { user, changeUser, saveUser } = useUser(id);
+    const { user, saveUser } = useUser(id);
 
     const navigate = useNavigate();
 
-    function onInputChange(e) {
-        changeUser({ [e.target.name]: e.target.value });
-    }
+    function validate(values) {
+        const errors = {};
 
-    function onFormSubmit(e) {
-        e.preventDefault();
+        if (values.name === '') {
+            errors.name = 'Name is Required';
+        }
+        if (values.surname === '') {
+            errors.surname = 'Surname is Required';
+        }
 
-        saveUser(user).then(() => {
-            navigate('..');
-        });
+        if (!EMAIL_VALIDATION_REGEXP.test(values.email)) {
+            errors.email = 'Email is invalid';
+        }
+
+        if (values.email === '') {
+            errors.email = 'Email is Required';
+        }
+
+        return errors;
     }
 
     return (
         <Paper>
-            <form onSubmit={onFormSubmit}>
-                <TextField
-                    name="name"
-                    label="Name"
-                    value={user.name}
-                    onChange={onInputChange}
-                    fullWidth
-                />
-                <TextField
-                    name="surname"
-                    label="Surname"
-                    value={user.surname}
-                    onChange={onInputChange}
-                    fullWidth
-                />
-                <TextField
-                    name="email"
-                    label="Email"
-                    value={user.email}
-                    onChange={onInputChange}
-                    fullWidth
-                />
-                <Button variant="contained" type="submit" color="primary">
-                    Save
-                </Button>
-                <Button
-                    variant="text"
-                    color="error"
-                    to=".."
-                    component={NavLink}
-                >
-                    Cancel
-                </Button>
-            </form>
+            <Formik
+                initialValues={user}
+                enableReinitialize
+                onSubmit={(values) => {
+                    saveUser(values).then(() => navigate('..'));
+                }}
+                validate={validate}
+                validateOnMount
+            >
+                <Form>
+                    <SuperTextField
+                        sx={{ marginBottom: 2 }}
+                        fullWidth
+                        name="name"
+                        label="Name"
+                    />
+                    <SuperTextField
+                        sx={{ marginBottom: 2 }}
+                        fullWidth
+                        name="surname"
+                        label="Surname"
+                    />
+                    <SuperTextField
+                        sx={{ marginBottom: 2 }}
+                        fullWidth
+                        name="email"
+                        label="Email"
+                    />
+                    <Button variant="contained" type="submit" color="primary">
+                        Save
+                    </Button>
+                    <Button
+                        variant="text"
+                        color="error"
+                        to=".."
+                        component={NavLink}
+                    >
+                        Cancel
+                    </Button>
+                </Form>
+            </Formik>
         </Paper>
     );
 }
