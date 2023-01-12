@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
 import TodoForm from './components/TodoForm';
 import TodosList from './components/TodosList';
+import { useSelector } from 'react-redux';
 
 export default function App() {
+    const isLoading = useSelector(({ isLoading }) => isLoading);
     return (
         <div className="container">
-            <TodosList />
-            <TodoForm />
+            {isLoading ? (
+                'Loading...'
+            ) : (
+                <>
+                    <TodosList />
+                    <TodoForm />
+                </>
+            )}
         </div>
     );
 }

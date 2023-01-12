@@ -1,12 +1,18 @@
 import React from 'react';
+import { createTodo } from '../store/actions/todos';
+import { useDispatch } from 'react-redux';
 
-function TodoForm({ onCreate }) {
+function TodoForm() {
+    const dispatch = useDispatch();
+
     function onFormSubmit(e) {
         e.preventDefault();
 
-        onCreate({
-            title: e.target.elements.title.value,
-        });
+        dispatch(
+            createTodo({
+                title: e.target.elements.title.value,
+            })
+        );
 
         e.target.reset();
     }
