@@ -1,6 +1,7 @@
 import React from 'react';
 import TodosListItem from './TodosListItem';
-import { selectTodos } from '../store/selectors/todos';
+import { selectTodos } from '../toolkitStore/todosSlice';
+// import { selectTodos } from '../store/selectors/todos';
 import { useSelector } from 'react-redux';
 
 function TodosList() {

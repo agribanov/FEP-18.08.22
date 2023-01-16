@@ -1,10 +1,13 @@
 import './TodosListItem.css';
 
-import { deleteTodo, toggleTodo } from '../store/actions/todos';
+import { deleteTodo, toggleTodo } from '../toolkitStore/todosSlice';
 
 import React from 'react';
 import classNames from '../common/utils/classnames';
 import { useDispatch } from 'react-redux';
+
+// import { deleteTodo, toggleTodo } from '../store/actions/todos';
+
 
 function TodosListItem({ todo: { id, title, isDone } }) {
     const dispatch = useDispatch();

@@ -12,6 +12,7 @@
     "license": "ISC",
     "dependencies": {
         "cowsay": "^1.5.0",
+        "immer": "^9.0.18",
         "redux": "^4.2.0"
     }
 }

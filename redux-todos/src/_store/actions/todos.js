@@ -5,15 +5,9 @@ function createAction(type) {
 }
 
 export const SET_IS_LOADING = 'SET_IS_LOADING';
-// export function setIsLoading(payload) {
-//     return { type: SET_IS_LOADING, payload };
-// }
 export const setIsLoading = createAction(SET_IS_LOADING);
 
 export const ACTION_UPDATE = 'ACTION_UPDATE';
-// function updateTodo(payload) {
-//     return { type: ACTION_UPDATE, payload };
-// }
 export const updateTodo = createAction(ACTION_UPDATE);
 export function toggleTodo(id) {
     return (dispatch, getState) => {
@@ -26,9 +20,6 @@ export function toggleTodo(id) {
 }
 
 export const ACTION_REMOVE = 'ACTION_REMOVE';
-// function removeTodo(payload) {
-//     return { type: ACTION_REMOVE, payload };
-// }
 export const removeTodo = createAction(ACTION_REMOVE);
 
 export function deleteTodo(id) {
@@ -38,15 +29,14 @@ export function deleteTodo(id) {
 }
 
 export const ACTION_SET_TODOS = 'ACTION_SET_TODOS';
-// export function setTodos(payload) {
-//     return { type: ACTION_SET_TODOS, payload };
-// }
-export const setTodos = createAction(ACTION_SET_TODOS);
+export const setTodos = function (payload) {
+    return {
+        type: ACTION_SET_TODOS,
+        payload,
+    };
+};
 
 export const ACTION_PUSH = 'ACTION_PUSH';
-// function pushTodo(payload) {
-//     return { type: ACTION_PUSH, payload };
-// }
 export const pushTodo = createAction(ACTION_PUSH);
 
 export function createTodo(newTodo) {
@@ -60,10 +50,10 @@ export function createTodo(newTodo) {
 
 export function getList() {
     return (dispatch) => {
-        dispatch(setIsLoading(true));
+        // dispatch(setIsLoading(true));
         api.get('todos').then(({ data }) => {
             dispatch(setTodos(data));
-            dispatch(setIsLoading(false));
+            // dispatch(setIsLoading(false));
         });
     };
 }
