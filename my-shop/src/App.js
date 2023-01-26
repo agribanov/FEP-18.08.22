@@ -6,6 +6,9 @@ import Dashboard from './modules/admin/dashboard/pages/Dashboard';
 import Landing from './modules/user/landing/pages/Landing';
 import Login from './modules/common/auth/pages/Login';
 import Logout from './modules/common/auth/pages/Logout';
+import ProductForm from './modules/admin/products/pages/ProductForm';
+import Products from './modules/admin/products/pages/Products';
+import ProductsList from './modules/admin/products/pages/ProductsList';
 import React from 'react';
 import Signup from './modules/common/auth/pages/Signup';
 import Users from './modules/admin/users/pages/Users';
@@ -35,6 +38,10 @@ function App() {
                     />
                     <Route path="dashboard" element={<Dashboard />} />
                     <Route path="users" element={<Users />} />
+                    <Route path="products" element={<Products />}>
+                        <Route path="" element={<ProductsList />} />
+                        <Route path=":id" element={<ProductForm />} />
+                    </Route>
                 </Route>
             </Routes>
         </Container>
